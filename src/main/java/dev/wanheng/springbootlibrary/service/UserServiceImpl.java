@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -87,6 +88,9 @@ public class UserServiceImpl implements UserService {
         }
         if (!StringUtils.hasText(userPasswordChangeDto.getNewPassword())) {
             throw new LibraryException(400, "新密码不能为空");
+        }
+        if (Objects.equals(userPasswordChangeDto.getOldPassword(), userPasswordChangeDto.getNewPassword())) {
+            throw new LibraryException(400, "新密码不能与旧密码相同");
         }
         User user = userMapper.selectById(userPasswordChangeDto.getUserId());
         if (user == null) {

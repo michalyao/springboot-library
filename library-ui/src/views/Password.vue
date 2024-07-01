@@ -93,7 +93,6 @@ const user = useUserStore().userInfo;
 form.userId = user.id;
 
 const submitForm = () => {
-  console.log('submit')
   formRef.value.validate(async (valid) => {
     if (valid) {
       try {
@@ -103,10 +102,10 @@ const submitForm = () => {
           newPassword: form.newPassword,
         });
         if (res.data.code === 200) {
-          ElMessage.success('更新用户密码成功');
           // 刷新用户信息
-          userStore.clearUserInfo();
-          await router.push('/login')
+          useUserStore().clearUserInfo();
+          router.push('/login');
+          ElMessage.success('更新用户密码成功');
         } else {
           ElMessage.error(res.data.message);
         }
