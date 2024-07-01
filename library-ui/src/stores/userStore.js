@@ -8,7 +8,8 @@ export const useUserStore = defineStore('user', () => {
   // 1. 定义管理用户数据的state
   const userInfo = ref({});
   // 2. 定义获取接口数据的action函数
-  const getUserInfo = async (token) => {
+  const getUserInfo = async () => {
+    const token = localStorage.getItem("token")
     const res = await userInfoAPI(token);
     userInfo.value = res.data.data;
   };

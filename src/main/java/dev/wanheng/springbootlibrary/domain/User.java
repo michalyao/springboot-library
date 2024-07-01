@@ -17,6 +17,10 @@ public class User {
     @TableField("password")
     private String password;
 
+    @TableField("nick_name")
+    private String nickName;
+
+
     /**
      * role == 1 管理员
      * role == 2 读者

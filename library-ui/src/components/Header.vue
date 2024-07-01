@@ -7,7 +7,7 @@
     <div>
       <el-dropdown>
         <span class="el-dropdown-link">
-          {{ user.username}}
+          {{ user.nickName }}
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>

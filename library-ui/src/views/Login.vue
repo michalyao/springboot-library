@@ -82,7 +82,7 @@ const login = async () => {
       if (res.data.code === 200) {
         ElMessage.success("登录成功");
         localStorage.setItem('token', res.data.data.token)
-        await useUserStore().getUserInfo(res.data.data.token);
+        await useUserStore().getUserInfo();
         router.push("/book");
       } else {
         ElMessage.error(res.msg);

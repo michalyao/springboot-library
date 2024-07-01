@@ -3,6 +3,7 @@ package dev.wanheng.springbootlibrary.service;
 import dev.wanheng.springbootlibrary.dto.RegisterDto;
 import dev.wanheng.springbootlibrary.dto.LoginDto;
 import dev.wanheng.springbootlibrary.dto.UserInfoDto;
+import dev.wanheng.springbootlibrary.dto.UserPasswordChangeDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,4 +29,18 @@ public interface UserService {
      * @return
      */
     List<LoginDto> getUserList();
+
+    /**
+     * 更新用户信息
+     * @param id
+     * @param userInfoDto
+     */
+    void updateUser(Long id, UserInfoDto userInfoDto);
+
+    /**
+     * 更新用户密码
+     * @param userPasswordChangeDto
+     */
+    void updateUserPassword(UserPasswordChangeDto userPasswordChangeDto);
+
 }

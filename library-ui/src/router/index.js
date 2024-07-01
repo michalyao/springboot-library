@@ -11,7 +11,17 @@ const routes = [
                 path: 'book',
                 name: 'book',
                 component: () => import("@/views/Book.vue")
-            }
+            },
+            {
+                path: 'person',
+                name: 'Person',
+                component: () => import("@/views/Person.vue")
+            },
+            {
+                path: 'password',
+                name: 'Password',
+                component: () => import("@/views/Password.vue")
+            },
         ]
     },
     {

@@ -7,12 +7,38 @@
         background-color="#30333c"
         text-color="#fff"
     >
-      <el-menu-item index="/book">
+      <el-menu-item index="/book" v-if="user.role === '1'">
         <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconbook"></use>
+          <use xlink:href="#iconbook "></use>
         </svg>
         <span>书籍管理</span>
       </el-menu-item>
+      <el-menu-item index="/book" v-if="user.role === '2'">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#iconbook "></use>
+        </svg>
+        <span>图书查询</span>
+      </el-menu-item>
+      <el-sub-menu index="2" text-color="#fff">
+        <template #title>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-mingpian "></use>
+          </svg>
+          <span>个人信息</span>
+        </template>
+        <el-menu-item index="/person" style="font-color: white">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-a-bianji1 "></use>
+          </svg>
+          <span>修改个人信息</span>
+        </el-menu-item>
+        <el-menu-item index="/password">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-mima "></use>
+          </svg>
+          <span>修改密码</span>
+        </el-menu-item>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>
@@ -22,13 +48,14 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/userStore.js';
 
-const user = ref({})
-const route = useRoute()
-const path = ref(route.path)
+const user = ref({});
+const route = useRoute();
+const path = ref(route.path);
 const userStore = useUserStore();
 
-onMounted(() => {
-  user.value = userStore.userInfo
+onMounted(async () => {
+  await useUserStore().getUserInfo();
+  user.value = userStore.userInfo;
 })
 
 </script>
