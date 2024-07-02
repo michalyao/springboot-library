@@ -11,11 +11,16 @@
             <result property="borrowDate" column="borrow_date" jdbcType="TIMESTAMP"/>
             <result property="returnDate" column="return_date" jdbcType="TIMESTAMP"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="isbn" column="isbn" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="renewTimes" column="renew_times" jdbcType="INTEGER"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,book_id,
-        borrow_date,return_date,status
+        borrow_date,return_date,status,username,isbn,renew_times,created_at,updated_at
     </sql>
     <select id="findAllByBookIdInAndStatusAndUserId" resultMap="BaseResultMap">
         select

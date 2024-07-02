@@ -33,6 +33,18 @@ public class UserBooksController {
         return PlainResult.success(ret);
     }
 
+
+    /**
+     * 续借图书
+     * @param bookBorrowRequestDto
+     * @return
+     */
+    @PostMapping("/borrow/renew")
+    public PlainResult<Boolean> renewBook(@RequestBody BookBorrowRequestDto bookBorrowRequestDto) {
+        boolean ret = bookBorrowService.renewBook(bookBorrowRequestDto);
+        return PlainResult.success(ret);
+    }
+
     @PostMapping("/return")
     public PlainResult<Boolean> returnBook(@RequestBody BookReturnRequestDto returnRequestDto) {
         boolean ret = bookBorrowService.returnBook(returnRequestDto);

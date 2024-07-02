@@ -64,7 +64,7 @@ public class BookServiceImpl implements BookService {
         if (pageSize == null || pageSize < 1) {
             pageSize = 10;
         }
-        LambdaQueryWrapper<Book> wrappers = Wrappers.<Book>lambdaQuery();
+        LambdaQueryWrapper<Book> wrappers = Wrappers.lambdaQuery();
         if (StringUtils.hasText(bookName)) {
             wrappers.like(Book::getTitle,bookName);
         }

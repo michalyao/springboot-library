@@ -61,6 +61,10 @@ public class BookBorrowServiceImpl implements BookBorrowService {
         borrowRecord.setBorrowDate(LocalDateTime.now());
         borrowRecord.setReturnDate(null);
         borrowRecord.setStatus(STATUS_LEND);
+        borrowRecord.setIsbn(book.getIsbn());
+        borrowRecord.setUsername(user.getUsername());
+        borrowRecord.setUpdatedAt(LocalDateTime.now());
+        borrowRecord.setCreatedAt(LocalDateTime.now());
         borrowRecordMapper.insert(borrowRecord);
 
         // 更新图书库存
@@ -90,6 +94,7 @@ public class BookBorrowServiceImpl implements BookBorrowService {
         }
         originRecord.setReturnDate(LocalDateTime.now());
         originRecord.setStatus(LibraryConstants.STATUS_RETURN);
+        originRecord.setUpdatedAt(LocalDateTime.now());
         borrowRecordMapper.updateById(originRecord);
         // 更新图书库存
         return bookService.increaseStock(bookId);
@@ -124,13 +129,40 @@ public class BookBorrowServiceImpl implements BookBorrowService {
         }
         List<BookDto> delayBooks = bookService.findAllByIdIn(delayRecords.stream().map(BorrowRecord::getBookId).collect(Collectors.toList()));
         Map<Long, BookDto> bookDtoMap = delayBooks.stream().collect(Collectors.toMap(BookDto::getId, book -> book));
-        List<UserBorrowBookDto> ret = new ArrayList();
+        List<UserBorrowBookDto> ret = new ArrayList<>();
         for (BorrowRecord delayRecord : delayRecords) {
             UserBorrowBookDto userBorrowBookDto = toUserBorrowBookDto(delayRecord, bookDtoMap);
             ret.add(userBorrowBookDto);
         }
         userBorrowBooksInfoDto.setDelayedBooks(ret);
         return userBorrowBooksInfoDto;
+    }
+
+    @Override
+    public boolean renewBook(BookBorrowRequestDto bookBorrowRequestDto) {
+        Long bookId = bookBorrowRequestDto.getBookId();
+        Long userId = bookBorrowRequestDto.getUserId();
+        BookDto book = bookService.getBook(bookId);
+        if (book == null) {
+            throw new LibraryException(500, "图书不存在");
+        }
+        User user = userMapper.selectById(userId);
+        if (user == null) {
+            throw new LibraryException(500, "用户不存在");
+        }
+        if (!isReader(user)) {
+            throw new LibraryException(500, "当前用户不是读者用户");
+        }
+        BorrowRecord originRecord = borrowRecordMapper.findOneByUserIdAndBookIdAndStatus(userId, bookId, STATUS_LEND);
+        if (originRecord == null) {
+            // 无借阅记录直接返回
+            return true;
+        }
+        originRecord.setBorrowDate(LocalDateTime.now());
+        originRecord.setRenewTimes(originRecord.getRenewTimes() + 1);
+        originRecord.setUpdatedAt(LocalDateTime.now());
+        borrowRecordMapper.updateById(originRecord);
+        return true;
     }
 
     private static UserBorrowBookDto toUserBorrowBookDto(BorrowRecord delayRecord, Map<Long, BookDto> bookDtoMap) {

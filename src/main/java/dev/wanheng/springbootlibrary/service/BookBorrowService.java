@@ -16,4 +16,6 @@ public interface BookBorrowService {
     List<BorrowRecord> findBorrowBooks(List<Long> bookIds, Long userId);
 
     UserBorrowBooksInfoDto getUserBorrowBooksInfo(Long userId);
+
+    boolean renewBook(BookBorrowRequestDto bookBorrowRequestDto);
 }

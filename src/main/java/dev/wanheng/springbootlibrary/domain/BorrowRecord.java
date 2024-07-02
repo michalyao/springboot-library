@@ -27,4 +27,18 @@ public class BorrowRecord {
     @TableField("status")
     private String status;
 
+    @TableField("isbn")
+    private String isbn;
+
+    @TableField("username")
+    private String username;
+
+    @TableField("renew_times")
+    private Integer renewTimes;
+
+    @TableField(value = "created_at", fill = FieldFill.INSERT)
+    private LocalDateTime createdAt;
+
+    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updatedAt;
 }

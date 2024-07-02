@@ -22,4 +22,6 @@ public class LibraryConstants {
      */
     public static final String STATUS_RETURN = "2";
 
+    public static final int MAX_RENEW_TIMES = 1;
+
 }
