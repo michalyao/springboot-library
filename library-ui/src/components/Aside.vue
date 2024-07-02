@@ -7,6 +7,12 @@
         background-color="#30333c"
         text-color="#fff"
     >
+      <el-menu-item index="/dashboard">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icondashboard "></use>
+        </svg>
+        <span>数据统计</span>
+      </el-menu-item>
       <el-menu-item index="/book" v-if="user.role === '1'">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconbook "></use>

@@ -37,6 +37,11 @@ const routes = [
         name: 'BookWithUser',
         component: () => import('@/views/BookWithUser.vue'),
       },
+      {
+        path:'dashboard',
+        name:'Dashboard',
+        component:() => import("@/views/DashBoard.vue")
+      }
     ],
   },
   {
