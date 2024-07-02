@@ -1,4 +1,4 @@
-package dev.wanheng.springbootlibrary.service;
+package dev.wanheng.springbootlibrary.service.impl;
 
 import dev.wanheng.springbootlibrary.common.LibraryConstants;
 import dev.wanheng.springbootlibrary.common.LibraryException;
@@ -7,6 +7,8 @@ import dev.wanheng.springbootlibrary.domain.User;
 import dev.wanheng.springbootlibrary.dto.*;
 import dev.wanheng.springbootlibrary.mapper.BorrowRecordMapper;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
+import dev.wanheng.springbootlibrary.service.BookBorrowService;
+import dev.wanheng.springbootlibrary.service.BookService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

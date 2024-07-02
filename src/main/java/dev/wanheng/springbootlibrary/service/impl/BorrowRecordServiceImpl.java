@@ -1,4 +1,4 @@
-package dev.wanheng.springbootlibrary.service;
+package dev.wanheng.springbootlibrary.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -11,6 +11,7 @@ import dev.wanheng.springbootlibrary.dto.BorrowRecordDto;
 import dev.wanheng.springbootlibrary.mapper.BookMapper;
 import dev.wanheng.springbootlibrary.mapper.BorrowRecordMapper;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
+import dev.wanheng.springbootlibrary.service.BorrowRecordService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -46,6 +47,7 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
             pageSize = 10;
         }
         LambdaQueryWrapper<BorrowRecord> wrappers = Wrappers.lambdaQuery();
+        wrappers.orderByDesc(BorrowRecord::getUpdatedAt);
         if (StringUtils.hasText(username)) {
             wrappers.like(BorrowRecord::getUsername, username);
         }

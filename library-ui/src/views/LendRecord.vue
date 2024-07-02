@@ -35,7 +35,8 @@
     <el-table :data="tableData" stripe border>
       <el-table-column prop="isbn" label="图书编号" sortable />
       <el-table-column prop="title" label="图书名称" />
-      <el-table-column prop="username" label="读者编号" sortable />
+      <el-table-column prop="nickName" label="读者昵称" sortable />
+      <el-table-column prop="username" label="读者用户名" sortable />
       <el-table-column prop="borrowDate" label="借阅时间" sortable />
       <el-table-column prop="returnDate" label="归还时间" sortable />
       <el-table-column prop="status" label="状态">

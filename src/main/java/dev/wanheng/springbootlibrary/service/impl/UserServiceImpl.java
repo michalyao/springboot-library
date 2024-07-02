@@ -1,24 +1,23 @@
-package dev.wanheng.springbootlibrary.service;
+package dev.wanheng.springbootlibrary.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.common.LibraryException;
-import dev.wanheng.springbootlibrary.domain.Book;
 import dev.wanheng.springbootlibrary.domain.User;
 import dev.wanheng.springbootlibrary.dto.RegisterDto;
 import dev.wanheng.springbootlibrary.dto.LoginDto;
 import dev.wanheng.springbootlibrary.dto.UserInfoDto;
 import dev.wanheng.springbootlibrary.dto.UserPasswordChangeDto;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
+import dev.wanheng.springbootlibrary.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -122,6 +121,7 @@ public class UserServiceImpl implements UserService {
             pageSize = 10;
         }
         LambdaQueryWrapper<User> wrappers = Wrappers.lambdaQuery();
+        wrappers.orderByDesc(User::getUpdatedAt);
         if (StringUtils.hasText(name)) {
             wrappers.like(User::getNickName, name);
         }

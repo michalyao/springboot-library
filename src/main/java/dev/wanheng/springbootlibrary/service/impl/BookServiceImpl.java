@@ -1,12 +1,14 @@
-package dev.wanheng.springbootlibrary.service;
+package dev.wanheng.springbootlibrary.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.domain.Book;
+import dev.wanheng.springbootlibrary.domain.BorrowRecord;
 import dev.wanheng.springbootlibrary.dto.BookDto;
 import dev.wanheng.springbootlibrary.mapper.BookMapper;
+import dev.wanheng.springbootlibrary.service.BookService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,6 +73,7 @@ public class BookServiceImpl implements BookService {
         if (StringUtils.hasText(isbn)) {
             wrappers.like(Book::getIsbn,isbn);
         }
+        wrappers.orderByDesc(Book::getUpdatedAt);
         Page<Book> bookPage = bookMapper.selectPage(new Page<>(pageNum, pageSize), wrappers);
         if (bookPage == null) {
             return null;

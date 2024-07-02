@@ -65,7 +65,7 @@
             </template>
           </el-popconfirm>
           <el-button size="small" @click="handleLend(row.id)" v-if="isReader"
-                     :disabled="row.status === 0">借阅
+                     :disabled="row.status === '1'">借阅
           </el-button>
           <el-popconfirm title="确认还书?" @confirm="handleReturn(row.id)"
                          v-if="isReader" :disabled="row.status !== '1'">
