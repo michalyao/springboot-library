@@ -28,8 +28,8 @@
     <el-table :data="tableData" stripe border>
       <el-table-column prop="isbn" label="图书编号" sortable></el-table-column>
       <el-table-column prop="title" label="图书名称"></el-table-column>
-      <el-table-column prop="nickName" label="借阅者"></el-table-column>
       <el-table-column prop="borrowDate" label="借阅时间"></el-table-column>
+      <el-table-column prop="returnDate" label="归还时间"></el-table-column>
       <el-table-column prop="deadDate" label="最迟归还日期"></el-table-column>
       <el-table-column prop="status" label="状态">
         <template v-slot="scope">
@@ -43,6 +43,13 @@
           <el-popconfirm title="确认续借(续借一次延长30天)?" @confirm="handleRenew(scope.row)" :disabled="scope.row.renewTimes === 0 || scope.row.status === '2'">
             <template #reference>
               <el-button type="danger" size="small" :disabled="scope.row.renewTimes === 0 || scope.row.status === '2'">续借</el-button>
+            </template>
+          </el-popconfirm>
+          <el-popconfirm title="确认还书?" @confirm="handleReturn(scope.row.bookId)" :disabled="scope.row.status !== '1'">
+            <template #reference>
+              <el-button type="primary" size="small" :disabled="scope.row.status !== '1'">
+                还书
+              </el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -67,9 +74,9 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { ElMessage } from 'element-plus';
+import { ElButton, ElMessage, ElPopconfirm } from 'element-plus';
 import { useUserStore } from '@/stores/userStore.js';
-import { getUserBorrowRecordAPI, renewBooksAPI } from '@/api/userBooks.js';
+import { getUserBorrowRecordAPI, renewBooksAPI, returnBooksAPI } from '@/api/userBooks.js';
 
 const isbn = ref('');
 const username = ref('');
@@ -92,6 +99,24 @@ const load = async () => {
   const res = await getUserBorrowRecordAPI(params);
   tableData.value = res.data.data.records;
   total.value = res.data.data.total;
+};
+
+// 处理还书
+const handleReturn = async (bookId) => {
+  // 处理还书逻辑
+  const userId = user.id;
+  try {
+    const res = await returnBooksAPI({ bookId, userId });
+    if (res.data.code === 200) {
+      ElMessage.success('还书成功');
+      await load();
+    } else {
+      ElMessage.error(res.data.message);
+    }
+  } catch (error) {
+    ElMessage.error(error.response.data.message);
+  }
+
 };
 
 const handleClear = () => {
