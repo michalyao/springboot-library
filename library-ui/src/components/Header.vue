@@ -32,9 +32,7 @@ import { useUserStore } from '@/stores/userStore.js';
 const user = ref({});
 const router = useRouter();
 const userStore = useUserStore();
-onMounted(async () => {
-  user.value = userStore.userInfo
-});
+user.value = userStore.userInfo;
 
 const exit = () => {
   userStore.clearUserInfo();

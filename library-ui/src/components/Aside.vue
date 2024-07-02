@@ -44,19 +44,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/userStore.js';
 
 const user = ref({});
 const route = useRoute();
 const path = ref(route.path);
 const userStore = useUserStore();
-
-onMounted(async () => {
-  await useUserStore().getUserInfo();
-  user.value = userStore.userInfo;
-})
+user.value = userStore.userInfo;
 
 </script>
 
