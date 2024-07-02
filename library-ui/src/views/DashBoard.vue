@@ -39,21 +39,20 @@ onMounted(() => {
       cards.value[1].data = res.data.data.bookCount
       cards.value[2].data = res.data.data.userCount
 
+      const dailyLendRecords = res.data.data.dailyLendRecords;
+      const dates = dailyLendRecords.map(record => record.date)
+      const counts = dailyLendRecords.map(record => record.count)
+
       const myChart = echarts.init(mainChart.value)
       myChart.setOption({
-        title: { text: '统计' },
+        title: { text: '一周借阅统计' },
         tooltip: { trigger: 'axis' },
         grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-        xAxis: { type: 'category', data: cards.value.map(item => item.title), axisTick: { alignWithLabel: true } },
+        xAxis: { type: 'category', data: dates, axisTick: { alignWithLabel: true } },
         yAxis: { type: 'value' },
         series: [
           {
-            type: 'bar', label: { show: true }, barWidth: '25%',
-            data: [
-              { value: cards.value[0].data, itemStyle: { color: '#5470c6' } },
-              { value: cards.value[1].data, itemStyle: { color: '#91cc75' } },
-              { value: cards.value[2].data, itemStyle: { color: '#fac858' } }
-            ]
+            type: 'line', label: { show: true }, data: counts, itemStyle: { color: '#5470c6' }
           }
         ]
       })
