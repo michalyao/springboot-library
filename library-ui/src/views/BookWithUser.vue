@@ -8,12 +8,6 @@
             <template #prefix><el-icon class="el-input__icon"><search/></el-icon></template>
           </el-input>
         </el-form-item>
-        <el-form-item label="图书名称">
-          <el-input v-model="title" placeholder="请输入图书名称" clearable>
-            <template #prefix><el-icon class="el-input__icon"><search/></el-icon></template>
-          </el-input>
-        </el-form-item>
-
         <el-form-item>
           <el-button type="primary" class="search-btn" @click="load" size="small">查询</el-button>
         </el-form-item>
