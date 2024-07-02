@@ -1,6 +1,11 @@
 package dev.wanheng.springbootlibrary.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.common.LibraryException;
+import dev.wanheng.springbootlibrary.domain.Book;
 import dev.wanheng.springbootlibrary.domain.User;
 import dev.wanheng.springbootlibrary.dto.RegisterDto;
 import dev.wanheng.springbootlibrary.dto.LoginDto;
@@ -45,6 +50,10 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             return null;
         }
+        return toUserInfoDto(user);
+    }
+
+    private UserInfoDto toUserInfoDto(User user) {
         UserInfoDto userInfoDto = new UserInfoDto();
         userInfoDto.setNickName(user.getNickName());
         userInfoDto.setAddress(user.getAddress());
@@ -104,5 +113,40 @@ public class UserServiceImpl implements UserService {
         userMapper.updateById(user);
     }
 
+    @Override
+    public IPage<UserInfoDto> searchUser(Integer pageNum, Integer pageSize, String name, String phone, String email) {
+        if (pageNum == null || pageNum < 1) {
+            pageNum = 1;
+        }
+        if (pageSize == null || pageSize < 1) {
+            pageSize = 10;
+        }
+        LambdaQueryWrapper<User> wrappers = Wrappers.lambdaQuery();
+        if (StringUtils.hasText(name)) {
+            wrappers.like(User::getNickName, name);
+        }
+        if (StringUtils.hasText(phone)) {
+            wrappers.like(User::getPhone, phone);
+        }
+        if (StringUtils.hasText(email)) {
+            wrappers.like(User::getEmail, email);
+        }
+        Page<User> userPage = userMapper.selectPage(new Page<>(pageNum, pageSize), wrappers);
+        if (userPage == null) {
+            return null;
+        }
+        return userPage.convert(this::toUserInfoDto);
+    }
+
+    @Override
+    public void deleteBook(Long id) {
+        userMapper.deleteById(id);
+
+    }
+
+    @Override
+    public void batchDelete(List<Long> ids) {
+        userMapper.deleteBatchIds(ids);
+    }
 
 }

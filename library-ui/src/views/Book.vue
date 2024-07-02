@@ -108,7 +108,7 @@
       ></el-pagination>
     </div>
     <!-- 修改书籍信息对话框 -->
-    <el-dialog v-model="editBookDialogVisible" title="修改书籍信息" width="30%">
+    <el-dialog v-model="editBookDialogVisible" :title="form.id ? '修改书籍信息': '上架书籍信息'" width="30%">
       <el-form :model="form" label-width="120px">
         <el-form-item label="图书编号">
           <el-input class="form-input" v-model="form.isbn"></el-input>

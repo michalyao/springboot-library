@@ -19,6 +19,12 @@
         </svg>
         <span>图书查询</span>
       </el-menu-item>
+      <el-menu-item index="/user" v-if="user.role === '1'">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#iconreader "></use>
+        </svg>
+        <span>读者管理</span>
+      </el-menu-item>
       <el-sub-menu index="2" text-color="#fff">
         <template #title>
           <svg class="icon" aria-hidden="true">

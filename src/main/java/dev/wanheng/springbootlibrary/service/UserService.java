@@ -1,7 +1,8 @@
 package dev.wanheng.springbootlibrary.service;
 
-import dev.wanheng.springbootlibrary.dto.RegisterDto;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.wanheng.springbootlibrary.dto.LoginDto;
+import dev.wanheng.springbootlibrary.dto.RegisterDto;
 import dev.wanheng.springbootlibrary.dto.UserInfoDto;
 import dev.wanheng.springbootlibrary.dto.UserPasswordChangeDto;
 import org.springframework.stereotype.Service;
@@ -43,4 +44,18 @@ public interface UserService {
      */
     void updateUserPassword(UserPasswordChangeDto userPasswordChangeDto);
 
+    /**
+     * 用户搜索
+     * @param pageNum
+     * @param pageSize
+     * @param name
+     * @param phone
+     * @param email
+     * @return
+     */
+    IPage<UserInfoDto> searchUser(Integer pageNum, Integer pageSize, String name, String phone, String email);
+
+    void deleteBook(Long id);
+
+    void batchDelete(List<Long> ids);
 }
