@@ -1,8 +1,7 @@
 package dev.wanheng.springbootlibrary.service;
 
-import dev.wanheng.springbootlibrary.domain.BorrowRecord;
+import dev.wanheng.springbootlibrary.entity.BorrowRecord;
 import dev.wanheng.springbootlibrary.dto.BookBorrowRequestDto;
-import dev.wanheng.springbootlibrary.dto.BookDto;
 import dev.wanheng.springbootlibrary.dto.BookReturnRequestDto;
 import dev.wanheng.springbootlibrary.dto.UserBorrowBooksInfoDto;
 

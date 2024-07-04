@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import dev.wanheng.springbootlibrary.common.PlainResult;
-import dev.wanheng.springbootlibrary.domain.Book;
-import dev.wanheng.springbootlibrary.domain.BorrowRecord;
+import dev.wanheng.springbootlibrary.entity.BorrowRecord;
 import dev.wanheng.springbootlibrary.mapper.BookMapper;
 import dev.wanheng.springbootlibrary.mapper.BorrowRecordMapper;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 

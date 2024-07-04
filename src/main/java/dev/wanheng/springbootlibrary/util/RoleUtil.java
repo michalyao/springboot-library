@@ -1,6 +1,6 @@
 package dev.wanheng.springbootlibrary.util;
 
-import dev.wanheng.springbootlibrary.domain.User;
+import dev.wanheng.springbootlibrary.entity.User;
 
 import java.util.Objects;
 

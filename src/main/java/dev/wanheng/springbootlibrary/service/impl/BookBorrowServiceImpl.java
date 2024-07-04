@@ -2,8 +2,8 @@ package dev.wanheng.springbootlibrary.service.impl;
 
 import dev.wanheng.springbootlibrary.common.LibraryConstants;
 import dev.wanheng.springbootlibrary.common.LibraryException;
-import dev.wanheng.springbootlibrary.domain.BorrowRecord;
-import dev.wanheng.springbootlibrary.domain.User;
+import dev.wanheng.springbootlibrary.entity.BorrowRecord;
+import dev.wanheng.springbootlibrary.entity.User;
 import dev.wanheng.springbootlibrary.dto.*;
 import dev.wanheng.springbootlibrary.mapper.BorrowRecordMapper;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;

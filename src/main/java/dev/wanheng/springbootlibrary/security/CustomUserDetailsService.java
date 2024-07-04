@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        dev.wanheng.springbootlibrary.domain.User user = userMapper.findOneByUsername(username);
+        dev.wanheng.springbootlibrary.entity.User user = userMapper.findOneByUsername(username);
         if (user == null) {
             return null;
         }

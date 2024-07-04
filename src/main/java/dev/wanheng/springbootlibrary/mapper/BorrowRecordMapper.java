@@ -4,7 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import dev.wanheng.springbootlibrary.domain.BorrowRecord;
+import dev.wanheng.springbootlibrary.entity.BorrowRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

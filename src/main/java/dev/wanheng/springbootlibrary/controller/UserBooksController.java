@@ -3,7 +3,7 @@ package dev.wanheng.springbootlibrary.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.wanheng.springbootlibrary.common.LibraryConstants;
 import dev.wanheng.springbootlibrary.common.PlainResult;
-import dev.wanheng.springbootlibrary.domain.BorrowRecord;
+import dev.wanheng.springbootlibrary.entity.BorrowRecord;
 import dev.wanheng.springbootlibrary.dto.BookBorrowRequestDto;
 import dev.wanheng.springbootlibrary.dto.BookDto;
 import dev.wanheng.springbootlibrary.dto.BookReturnRequestDto;

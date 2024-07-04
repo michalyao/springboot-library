@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Collection;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import dev.wanheng.springbootlibrary.domain.Book;
+import dev.wanheng.springbootlibrary.entity.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

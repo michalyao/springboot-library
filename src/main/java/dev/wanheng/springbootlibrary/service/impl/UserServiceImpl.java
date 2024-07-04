@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.common.LibraryException;
-import dev.wanheng.springbootlibrary.domain.User;
+import dev.wanheng.springbootlibrary.entity.User;
 import dev.wanheng.springbootlibrary.dto.RegisterDto;
 import dev.wanheng.springbootlibrary.dto.LoginDto;
 import dev.wanheng.springbootlibrary.dto.UserInfoDto;

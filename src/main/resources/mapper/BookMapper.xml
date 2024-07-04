@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dev.wanheng.springbootlibrary.mapper.BookMapper">
 
-    <resultMap id="BaseResultMap" type="dev.wanheng.springbootlibrary.domain.Book">
+    <resultMap id="BaseResultMap" type="dev.wanheng.springbootlibrary.entity.Book">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="title" column="title" jdbcType="VARCHAR"/>
             <result property="author" column="author" jdbcType="VARCHAR"/>

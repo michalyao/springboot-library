@@ -2,7 +2,7 @@ package dev.wanheng.springbootlibrary.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import dev.wanheng.springbootlibrary.domain.User;
+import dev.wanheng.springbootlibrary.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

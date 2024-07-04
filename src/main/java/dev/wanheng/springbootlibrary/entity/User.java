@@ -1,4 +1,4 @@
-package dev.wanheng.springbootlibrary.domain;
+package dev.wanheng.springbootlibrary.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
