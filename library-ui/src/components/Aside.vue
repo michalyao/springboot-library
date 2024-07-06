@@ -7,7 +7,7 @@
         background-color="#30333c"
         text-color="#fff"
     >
-      <el-menu-item index="/dashboard">
+      <el-menu-item index="/dashboard" v-if="user.role === '1'">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icondashboard "></use>
         </svg>

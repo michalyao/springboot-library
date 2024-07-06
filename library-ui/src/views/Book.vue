@@ -223,10 +223,11 @@ const load = async () => {
     tableData.value = res.data.data.records;
     total.value = res.data.data.total;
 
-    // 逾期 x
+    // 逾期书籍
     const userBorrowInfo = await getUserBorrowInfoAPI(user.value.id);
     borrowNum.value = userBorrowInfo.data.data.borrowNum;
-    outDateBook.value = userBorrowInfo.data.data.delayedBooks;
+
+    outDateBook.value = userBorrowInfo.data.data.delayedBooks ? userBorrowInfo.data.data.delayedBooks : [];
   }
 
 };
