@@ -75,6 +75,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, UserInfoDto userInfoDto) {
+        User user = toUser(id, userInfoDto);
+        userMapper.updateById(user);
+    }
+
+    private static User toUser(Long id, UserInfoDto userInfoDto) {
         User user = new User();
         user.setId(id);
         user.setUsername(userInfoDto.getUsername());
@@ -83,7 +88,7 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userInfoDto.getPhone());
         user.setAddress(userInfoDto.getAddress());
         user.setUpdatedAt(LocalDateTime.now());
-        userMapper.updateById(user);
+        return user;
     }
 
     @Override
@@ -139,7 +144,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteBook(Long id) {
+    public void deleteUser(Long id) {
         userMapper.deleteById(id);
 
     }

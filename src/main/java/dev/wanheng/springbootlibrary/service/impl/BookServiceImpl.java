@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public void addBook(BookDto bookDto) {
         Book book = convertToBook(bookDto);
+        book.setCreatedAt(LocalDateTime.now());
+        book.setUpdatedAt(LocalDateTime.now());
         bookMapper.insert(book);
     }
 
@@ -34,6 +37,7 @@ public class BookServiceImpl implements BookService {
     public void updateBook(Long id, BookDto bookDto) {
         Book book = convertToBook(bookDto);
         book.setId(id);
+        book.setUpdatedAt(LocalDateTime.now());
         bookMapper.updateById(book);
     }
 

@@ -23,6 +23,14 @@
         </div>
       </el-form-item>
       <el-form-item>
+        <div class="mb-2 flex items-center text-sm">
+          <el-radio-group  v-model="form.rule" class="ml-4">
+            <el-radio value="1" size="default">管理员</el-radio>
+            <el-radio value="2" size="default">读者</el-radio>
+          </el-radio-group>
+        </div>
+      </el-form-item>
+      <el-form-item>
         <el-button type="primary" style="width: 100%" @click="login">登 录</el-button>
       </el-form-item>
       <el-form-item>

@@ -40,6 +40,7 @@
         WHERE id = #{id}
           AND version = #{version}
     </update>
+
     <select id="findAllByIdIn" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

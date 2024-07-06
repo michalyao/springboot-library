@@ -55,7 +55,15 @@ public interface UserService {
      */
     IPage<UserInfoDto> searchUser(Integer pageNum, Integer pageSize, String name, String phone, String email);
 
-    void deleteBook(Long id);
+    /**
+     * 删除用户
+     * @param id
+     */
+    void deleteUser(Long id);
 
+    /**
+     * 批量删除用户
+     * @param ids
+     */
     void batchDelete(List<Long> ids);
 }
