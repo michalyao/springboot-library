@@ -40,7 +40,7 @@
     </div>
     <!-- 按钮 -->
     <div style="margin: 10px 0;">
-      <el-popconfirm title="确认删除?" @confirm="deleteSelectedReaders" v-if="user.role === 1">
+      <el-popconfirm title="确认删除?" @confirm="deleteSelectedReaders">
         <template #reference>
           <el-button type="danger" size="small">批量删除</el-button>
         </template>
