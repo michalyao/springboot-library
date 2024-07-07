@@ -109,7 +109,6 @@ const login = async () => {
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: url('../img/bg2.svg');
   background-size: contain;
   overflow: hidden;
 }
