@@ -93,7 +93,7 @@ const login = async () => {
         await useUserStore().getUserInfo();
         router.push("/book");
       } else {
-        ElMessage.error(res.msg);
+        ElMessage.error(res.data.message);
       }
     }
   } catch (error) {

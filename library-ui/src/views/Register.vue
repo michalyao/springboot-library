@@ -112,7 +112,7 @@ const register = async () => {
     ElMessage.success("注册成功");
     router.push("/login");
   } else {
-    ElMessage.error(res.msg);
+    ElMessage.error(res.data.message);
   }
 };
 </script>
@@ -122,7 +122,6 @@ const register = async () => {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url('../img/bg2.svg');
   background-size: contain;
 }
 .login-page {
