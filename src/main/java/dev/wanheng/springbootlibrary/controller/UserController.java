@@ -27,15 +27,15 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public PlainResult<Void> updateUser(@PathVariable Long id, @RequestBody UserInfoDto userInfoDto) {
+    public PlainResult<String> updateUser(@PathVariable Long id, @RequestBody UserInfoDto userInfoDto) {
         userService.updateUser(id, userInfoDto);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @PostMapping("/password")
-    public PlainResult<Void> updateUserPassword(@RequestBody UserPasswordChangeDto userPasswordChangeDto) {
+    public PlainResult<String> updateUserPassword(@RequestBody UserPasswordChangeDto userPasswordChangeDto) {
         userService.updateUserPassword(userPasswordChangeDto);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @GetMapping("/search")
@@ -49,14 +49,14 @@ public class UserController {
 
     }
     @DeleteMapping("/{id}")
-    public PlainResult<Void> deleteBook(@PathVariable Long id) {
+    public PlainResult<String> deleteBook(@PathVariable Long id) {
         userService.deleteUser(id);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @PostMapping("/deleteBatch")
-    public PlainResult<Void> deleteBatch(@RequestBody List<Long> ids) {
+    public PlainResult<String> deleteBatch(@RequestBody List<Long> ids) {
         userService.batchDelete(ids);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 }

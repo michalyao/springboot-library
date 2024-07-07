@@ -31,13 +31,13 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public PlainResult<Void> register(@RequestBody RegisterDto registerDto) {
+    public PlainResult<String> register(@RequestBody RegisterDto registerDto) {
         UserInfoDto user = userService.getUserByUsername(registerDto.getUsername());
         if (user != null) {
             return PlainResult.fail(400, "用户名已存在");
         }
         userService.register(registerDto);
-        return PlainResult.success(null);
+        return PlainResult.success("注册成功");
     }
 
     @PostMapping("/login")

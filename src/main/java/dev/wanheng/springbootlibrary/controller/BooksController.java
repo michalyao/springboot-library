@@ -18,27 +18,27 @@ public class BooksController {
     private BookService bookService;
 
     @PostMapping("/books")
-    public PlainResult<Void> addBook(@RequestBody BookDto bookDto) {
+    public PlainResult<String> addBook(@RequestBody BookDto bookDto) {
         bookService.addBook(bookDto);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @PutMapping("/books/{id}")
-    public PlainResult<Void> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
+    public PlainResult<String> updateBook(@PathVariable Long id, @RequestBody BookDto bookDto) {
         bookService.updateBook(id, bookDto);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @DeleteMapping("/books/{id}")
-    public PlainResult<Void> deleteBook(@PathVariable Long id) {
+    public PlainResult<String> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @PostMapping("/books/deleteBatch")
-    public PlainResult<Void> deleteBatch(@RequestBody List<Long> ids) {
+    public PlainResult<String> deleteBatch(@RequestBody List<Long> ids) {
         bookService.batchDelete(ids);
-        return PlainResult.success(null);
+        return PlainResult.success("success");
     }
 
     @GetMapping("/books")
