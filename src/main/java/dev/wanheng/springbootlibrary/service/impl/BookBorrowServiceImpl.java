@@ -118,6 +118,7 @@ public class BookBorrowServiceImpl implements BookBorrowService {
         if (CollectionUtils.isEmpty(borrowRecords)) {
             UserBorrowBooksInfoDto userBorrowBooksInfoDto = new UserBorrowBooksInfoDto();
             userBorrowBooksInfoDto.setBorrowNum(0);
+            userBorrowBooksInfoDto.setDelayedBooks(Collections.emptyList());
             return userBorrowBooksInfoDto;
         }
         UserBorrowBooksInfoDto userBorrowBooksInfoDto = new UserBorrowBooksInfoDto();
