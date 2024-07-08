@@ -22,7 +22,7 @@
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import { ElMessage } from "element-plus"
-import request from "../utils/request"
+import { dashboardAPI } from '@/api/dashboard.js';
 
 const cards = ref([
   { title: '已借阅', data: 100, icon: '#iconlend-record-pro' },
@@ -32,13 +32,13 @@ const cards = ref([
 
 const mainChart = ref(null)
 
-onMounted(() => {
-  request.get("/api/dashboard/stats").then(res => {
+onMounted(async () => {
+  try {
+    const res = await dashboardAPI();
     if (res.data.code === 200) {
       cards.value[0].data = res.data.data.lendRecordCount
       cards.value[1].data = res.data.data.bookCount
       cards.value[2].data = res.data.data.userCount
-
       const dailyLendRecords = res.data.data.dailyLendRecords;
       const dates = dailyLendRecords.map(record => record.date)
       const counts = dailyLendRecords.map(record => record.count)
@@ -63,9 +63,9 @@ onMounted(() => {
     } else {
       ElMessage.error(res.data.msg)
     }
-  }).catch(error => {
-    ElMessage.error("数据获取失败：" + error)
-  })
+  } catch (err) {
+    ElMessage.error('请求失败，请检查网络连接')
+  }
 })
 </script>
 
