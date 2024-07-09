@@ -9,6 +9,13 @@
           </template>
         </el-input>
       </el-form-item>
+      <el-form-item prop="nickName">
+        <el-input v-model="form.nickName" placeholder="请输入用户昵称" clearable>
+          <template #prefix>
+            <el-icon class="el-input__icon"><User/></el-icon>
+          </template>
+        </el-input>
+      </el-form-item>
       <el-form-item prop="password">
         <el-input v-model="form.password" placeholder="请输入密码" clearable show-password>
           <template #prefix>
@@ -53,10 +60,10 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
-import request from "../utils/request";
 import ValidCode from "../components/ValidCode.vue";
 import { User, Lock } from '@element-plus/icons-vue';
 import {useRouter} from "vue-router";
+import { registerAPI } from '@/api/auth.js';
 
 const form = reactive({
   username: '',
@@ -64,7 +71,8 @@ const form = reactive({
   confirm: '',
   role: '2',
   authorize: '',
-  validCode: ''
+  validCode: '',
+  nickName: '',
 });
 
 const router = useRouter()
@@ -107,7 +115,7 @@ const register = async () => {
     ElMessage.error("请输入正确的注册码");
     return;
   }
-  const res = await request.post("auth/register", form);
+  const res = await registerAPI(form);
   if (res.data.code === 200) {
     ElMessage.success("注册成功");
     router.push("/login");

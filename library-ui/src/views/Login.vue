@@ -47,7 +47,7 @@ import { ElMessage } from 'element-plus';
 import { User, Lock } from '@element-plus/icons-vue';
 import { useUserStore } from '@/stores/userStore.js';
 import ValidCode from '../components/ValidCode.vue';
-import request from '../utils/request';
+import { loginAPI } from '@/api/auth.js';
 
 const form = ref({
   username: '',
@@ -86,7 +86,7 @@ const login = async () => {
         return;
       }
 
-      const res = await request.post("auth/login", form.value);
+      const res = await loginAPI(form.value);
       if (res.data.code === 200) {
         ElMessage.success("登录成功");
         localStorage.setItem('token', res.data.data.token)

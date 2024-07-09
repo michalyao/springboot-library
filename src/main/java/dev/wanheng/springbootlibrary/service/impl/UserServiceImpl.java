@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registerDto.getEmail());
         user.setPhone(registerDto.getPhone());
         user.setAddress(registerDto.getAddress());
+        user.setNickName(registerDto.getNickName());
         userMapper.insert(user);
     }
 
