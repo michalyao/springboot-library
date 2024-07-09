@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.common.LibraryException;
+import dev.wanheng.springbootlibrary.dto.*;
 import dev.wanheng.springbootlibrary.entity.User;
-import dev.wanheng.springbootlibrary.dto.RegisterDto;
-import dev.wanheng.springbootlibrary.dto.LoginDto;
-import dev.wanheng.springbootlibrary.dto.UserInfoDto;
-import dev.wanheng.springbootlibrary.dto.UserPasswordChangeDto;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
 import dev.wanheng.springbootlibrary.service.UserService;
+import dev.wanheng.springbootlibrary.util.JwtUtil;
 import jakarta.annotation.Resource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -31,6 +33,12 @@ public class UserServiceImpl implements UserService {
     @Resource
     private PasswordEncoder passwordEncoder;
 
+    @Resource
+    private AuthenticationManager authenticationManager;
+
+    @Resource
+    private JwtUtil jwtUtil;
+
     @Override
     public void register(RegisterDto registerDto) {
         User user = new User();
@@ -42,6 +50,17 @@ public class UserServiceImpl implements UserService {
         user.setAddress(registerDto.getAddress());
         user.setNickName(registerDto.getNickName());
         userMapper.insert(user);
+    }
+
+    @Override
+    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
+        Authentication authenticate = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken
+                        (loginRequestDto.getUsername(), loginRequestDto.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        LoginResponseDto loginResponseDto = new LoginResponseDto();
+        loginResponseDto.setToken(jwtUtil.generateToken(loginRequestDto.getUsername()));
+        return loginResponseDto;
     }
 
     @Override
@@ -66,11 +85,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<LoginDto> getUserList() {
+    public List<LoginRequestDto> getUserList() {
         return userMapper.selectList(null).stream().map(user -> {
-            LoginDto loginDto = new LoginDto();
-            loginDto.setUsername(user.getUsername());
-            return loginDto;
+            LoginRequestDto loginRequestDto = new LoginRequestDto();
+            loginRequestDto.setUsername(user.getUsername());
+            return loginRequestDto;
         }).collect(Collectors.toList());
     }
 

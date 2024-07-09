@@ -1,3 +1,5 @@
+create database library;
+use library;
 create table book
 (
     id           bigint auto_increment

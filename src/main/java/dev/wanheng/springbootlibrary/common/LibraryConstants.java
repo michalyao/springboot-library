@@ -22,6 +22,9 @@ public class LibraryConstants {
      */
     public static final String STATUS_RETURN = "2";
 
+    /**
+     * 最大续借次数
+     */
     public static final int MAX_RENEW_TIMES = 1;
 
 }

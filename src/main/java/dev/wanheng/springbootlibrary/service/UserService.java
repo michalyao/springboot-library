@@ -1,10 +1,7 @@
 package dev.wanheng.springbootlibrary.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import dev.wanheng.springbootlibrary.dto.LoginDto;
-import dev.wanheng.springbootlibrary.dto.RegisterDto;
-import dev.wanheng.springbootlibrary.dto.UserInfoDto;
-import dev.wanheng.springbootlibrary.dto.UserPasswordChangeDto;
+import dev.wanheng.springbootlibrary.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +15,14 @@ public interface UserService {
      */
     void register(RegisterDto registerDto);
 
+
+    /**
+     * 用户登录
+     * @param loginRequestDto
+     * @return
+     */
+    LoginResponseDto login(LoginRequestDto loginRequestDto);
+
     /**
      * 根据用户名查询用户信息
      * @param username
@@ -29,7 +34,7 @@ public interface UserService {
      * 用户列表
      * @return
      */
-    List<LoginDto> getUserList();
+    List<LoginRequestDto> getUserList();
 
     /**
      * 更新用户信息
