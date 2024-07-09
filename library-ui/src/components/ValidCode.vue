@@ -66,10 +66,6 @@ const getStyle = (data) => {
   return `color: ${data.color}; font-size: ${data.fontSize}; padding: ${data.padding}; transform: ${data.transform}`;
 };
 
-watch(() => props.refresh, () => {
-  createCode();
-});
-
 onMounted(() => {
   createCode();
 });
