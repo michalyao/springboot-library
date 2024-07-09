@@ -21,10 +21,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public PlainResult<String> register(@RequestBody RegisterDto registerDto) {
-        UserInfoDto user = userService.getUserByUsername(registerDto.getUsername());
-        if (user != null) {
-            return PlainResult.fail(400, "用户名已存在");
-        }
         userService.register(registerDto);
         return PlainResult.success("注册成功");
     }

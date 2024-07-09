@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import dev.wanheng.springbootlibrary.common.LibraryException;
+import dev.wanheng.springbootlibrary.common.PlainResult;
 import dev.wanheng.springbootlibrary.dto.*;
 import dev.wanheng.springbootlibrary.entity.User;
 import dev.wanheng.springbootlibrary.mapper.UserMapper;
@@ -41,6 +42,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(RegisterDto registerDto) {
+        UserInfoDto originUser = getUserByUsername(registerDto.getUsername());
+        if (originUser != null) {
+            throw new LibraryException(400, "用户名已存在");
+        }
         User user = new User();
         user.setUsername(registerDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
