@@ -30,12 +30,6 @@ public interface UserService {
     UserInfoDto getUserByUsername(String username);
 
     /**
-     * 用户列表
-     * @return
-     */
-    List<LoginRequestDto> getUserList();
-
-    /**
      * 更新用户信息
      * @param id
      * @param userInfoDto

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(RegisterDto registerDto) {
-        UserInfoDto originUser = getUserByUsername(registerDto.getUsername());
+        User originUser = userMapper.findOneByUsername(registerDto.getUsername());
         if (originUser != null) {
             throw new LibraryException(400, "用户名已存在");
         }
@@ -87,15 +87,6 @@ public class UserServiceImpl implements UserService {
         userInfoDto.setUsername(user.getUsername());
         userInfoDto.setRole(user.getRole());
         return userInfoDto;
-    }
-
-    @Override
-    public List<LoginRequestDto> getUserList() {
-        return userMapper.selectList(null).stream().map(user -> {
-            LoginRequestDto loginRequestDto = new LoginRequestDto();
-            loginRequestDto.setUsername(user.getUsername());
-            return loginRequestDto;
-        }).collect(Collectors.toList());
     }
 
     @Override

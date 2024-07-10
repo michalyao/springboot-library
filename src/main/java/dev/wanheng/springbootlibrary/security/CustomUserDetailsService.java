@@ -20,7 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         dev.wanheng.springbootlibrary.entity.User user = userMapper.findOneByUsername(username);
         if (user == null) {
-            return null;
+            throw new UsernameNotFoundException("User not found with username: " + username);
         }
         return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }

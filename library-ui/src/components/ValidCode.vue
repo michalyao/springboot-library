@@ -1,19 +1,5 @@
-<template>
-  <div
-      class="validCode disabled-select"
-      :style="`width:${width}; height:${height}`"
-      @click="refreshCode"
-  >
-    <span
-        v-for="(item, index) in codeList"
-        :key="index"
-        :style="getStyle(item)"
-    >{{ item.code }}</span>
-  </div>
-</template>
-
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const props = defineProps({
   width: {
@@ -27,9 +13,6 @@ const props = defineProps({
   length: {
     type: Number,
     default: 4
-  },
-  refresh: {
-    type: Number
   }
 });
 
@@ -70,6 +53,22 @@ onMounted(() => {
   createCode();
 });
 </script>
+
+
+<template>
+  <div
+      class="validCode disabled-select"
+      :style="`width:${width}; height:${height}`"
+      @click="refreshCode"
+  >
+    <span
+        v-for="(item, index) in codeList"
+        :key="index"
+        :style="getStyle(item)"
+    >{{ item.code }}</span>
+  </div>
+</template>
+
 
 <style scoped>
 .validCode {
