@@ -29,7 +29,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconreader "></use>
         </svg>
-        <span>读者管理</span>
+        <span>用户管理</span>
       </el-menu-item>
       <el-menu-item index="/lendrecord" v-if="user.role === '1'">
         <svg class="icon" aria-hidden="true">

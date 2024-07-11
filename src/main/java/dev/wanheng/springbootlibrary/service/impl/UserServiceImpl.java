@@ -95,7 +95,18 @@ public class UserServiceImpl implements UserService {
         userMapper.updateById(user);
     }
 
-    private static User toUser(Long id, UserInfoDto userInfoDto) {
+    @Override
+    public void deleteUser(Long id) {
+        userMapper.deleteById(id);
+
+    }
+
+    @Override
+    public void batchDelete(List<Long> ids) {
+        userMapper.deleteBatchIds(ids);
+    }
+
+    private User toUser(Long id, UserInfoDto userInfoDto) {
         User user = new User();
         user.setId(id);
         user.setUsername(userInfoDto.getUsername());
@@ -159,15 +170,5 @@ public class UserServiceImpl implements UserService {
         return userPage.convert(this::toUserInfoDto);
     }
 
-    @Override
-    public void deleteUser(Long id) {
-        userMapper.deleteById(id);
-
-    }
-
-    @Override
-    public void batchDelete(List<Long> ids) {
-        userMapper.deleteBatchIds(ids);
-    }
 
 }

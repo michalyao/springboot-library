@@ -14,14 +14,6 @@ export const updateUserAPI = (form) => {
   return request.put(`/api/users/${form.id}`, form)
 }
 
-export const updateUserPasswordAPI = ({ userId, oldPassword, newPassword }) => {
-  return request.post(`/api/users/password`, {
-    userId,
-    oldPassword,
-    newPassword
-  })
-}
-
 export const getUsersAPI = ({ pageNum, pageSize, name, phone, email }) => {
   return request({
     url: '/api/users/search',
@@ -41,5 +33,13 @@ export const deleteUserAPI = (id) => {
 
 export const batchDeleteUsersAPI = (ids) => {
   return request.post('/api/users/deleteBatch', ids)
+}
+
+export const updateUserPasswordAPI = ({ userId, oldPassword, newPassword }) => {
+  return request.post(`/api/users/password`, {
+    userId,
+    oldPassword,
+    newPassword
+  })
 }
 

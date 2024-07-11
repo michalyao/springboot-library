@@ -30,19 +30,6 @@ public interface UserService {
     UserInfoDto getUserByUsername(String username);
 
     /**
-     * 更新用户信息
-     * @param id
-     * @param userInfoDto
-     */
-    void updateUser(Long id, UserInfoDto userInfoDto);
-
-    /**
-     * 更新用户密码
-     * @param userPasswordChangeDto
-     */
-    void updateUserPassword(UserPasswordChangeDto userPasswordChangeDto);
-
-    /**
      * 用户搜索
      * @param pageNum
      * @param pageSize
@@ -52,6 +39,13 @@ public interface UserService {
      * @return
      */
     IPage<UserInfoDto> searchUser(Integer pageNum, Integer pageSize, String name, String phone, String email);
+
+    /**
+     * 更新用户信息
+     * @param id
+     * @param userInfoDto
+     */
+    void updateUser(Long id, UserInfoDto userInfoDto);
 
     /**
      * 删除用户
@@ -64,4 +58,10 @@ public interface UserService {
      * @param ids
      */
     void batchDelete(List<Long> ids);
+
+    /**
+     * 更新用户密码
+     * @param userPasswordChangeDto
+     */
+    void updateUserPassword(UserPasswordChangeDto userPasswordChangeDto);
 }
