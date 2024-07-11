@@ -80,8 +80,7 @@
     </el-table>
 
     <!-- 逾期详情对话框 -->
-    <el-dialog v-model="outDateDialogVisible" v-if="numOfOutDateBook !== 0" title="逾期详情" width="50%"
-               :before-close="handleClose">
+    <el-dialog v-model="outDateDialogVisible" v-if="numOfOutDateBook !== 0" title="逾期详情" width="50%">
       <el-table :data="outDateBook" style="width: 100%">
         <el-table-column prop="isbn" label="图书编号"></el-table-column>
         <el-table-column prop="title" label="书名"></el-table-column>
