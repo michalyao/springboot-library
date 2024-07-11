@@ -341,6 +341,17 @@
 - **方法**: `GET`
 - **响应**: `PlainResult<Map<String, Object>>`
 
+## 核心业务时序图
+
+### 借书
+![img.png](img.png)
+
+### 还书
+![img_1.png](img_1.png)
+
+### 续借
+![img_2.png](img_2.png)
+
 ## 业务功能开发流程
 ### 后端
 - controller 接口定义
