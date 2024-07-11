@@ -108,7 +108,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findAllByIdIn(Collection<Long> idList) {
-        List<Book> books = bookMapper.findAllByIdIn(idList);
+        List<Book> books = bookMapper.selectBatchIds(idList);
         if (CollectionUtils.isEmpty(books)) {
             return Collections.emptyList();
         }

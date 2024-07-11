@@ -13,6 +13,4 @@ public interface BookMapper extends BaseMapper<Book> {
 
     int increaseStock(@Param("id") Long id, @Param("version") Integer version);
 
-    List<Book> findAllByIdIn(@Param("idList") Collection<Long> idList);
-
 }

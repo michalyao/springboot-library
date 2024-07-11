@@ -41,14 +41,4 @@
           AND version = #{version}
     </update>
 
-    <select id="findAllByIdIn" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from book
-        where
-        id in
-        <foreach collection="idList" item="item" open="(" close=")" separator=",">
-            #{item,jdbcType=NUMERIC}
-        </foreach>
-    </select>
 </mapper>
