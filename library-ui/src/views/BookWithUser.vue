@@ -70,7 +70,8 @@
 import { onMounted, ref } from 'vue';
 import { ElButton, ElMessage, ElPopconfirm } from 'element-plus';
 import { useUserStore } from '@/stores/userStore.js';
-import { getUserBorrowRecordAPI, renewBooksAPI, returnBooksAPI } from '@/api/userBooks.js';
+import { renewBooksAPI, returnBooksAPI } from '@/api/userBooks.js';
+import { getUserBorrowRecordAPI } from '@/api/borrowRecord.js';
 
 const isbn = ref('');
 const username = ref('');

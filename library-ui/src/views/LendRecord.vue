@@ -64,8 +64,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { ElMessage } from 'element-plus';
-import request from '../utils/request';
+import { getLibraryBorrowRecordAPI } from '@/api/borrowRecord.js';
 
 const isbn = ref('');
 const username = ref('');
@@ -76,18 +75,17 @@ const tableData = ref([]);
 const forms = ref([]);
 
 
-const load = () => {
-  request.get('/api/borrow/record', {
-    params: {
-      pageNum: currentPage.value,
-      pageSize: pageSize.value,
-      isbn: isbn.value,
-      username: username.value,
-    },
-  }).then(res => {
-    tableData.value = res.data.data.records;
-    total.value = res.data.data.total;
-  });
+const load = async () => {
+
+  const params = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value,
+    isbn: isbn.value,
+    username: username.value,
+  };
+  const res = await getLibraryBorrowRecordAPI(params);
+  tableData.value = res.data.data.records;
+  total.value = res.data.data.total;
 };
 
 const clear = () => {

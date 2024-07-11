@@ -168,7 +168,7 @@ public class BookBorrowServiceImpl implements BookBorrowService {
         return true;
     }
 
-    private static UserBorrowBookDto toUserBorrowBookDto(BorrowRecord delayRecord, Map<Long, BookDto> bookDtoMap) {
+    private UserBorrowBookDto toUserBorrowBookDto(BorrowRecord delayRecord, Map<Long, BookDto> bookDtoMap) {
         BookDto bookDto = bookDtoMap.get(delayRecord.getBookId());
         UserBorrowBookDto userBorrowBookDto = new UserBorrowBookDto();
         userBorrowBookDto.setId(bookDto.getId());

@@ -43,11 +43,5 @@ export const getUserBorrowInfoAPI = (userId) => {
   })
 }
 
-export const getUserBorrowRecordAPI = (params) => {
-  return request({
-    url: '/api/borrow/user/record',
-    params
-  })
-}
 
 
